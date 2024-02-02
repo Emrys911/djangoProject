@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}Главная страница{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>Мой интернет-магазин</h1>
+    </header>
+
+    <div class="content">
+        {% block content %}
+        {% for product in products %}
+            <p>{{ product }}</p>
+        {% endfor %}
+    {% endblock %}
+    </div>
+
+    <footer>
+        <p>Все права защищены</p>
+    </footer>
+</body>
+</html>
+В файле views.py в папке shopapp/ добавьте следующий код:
+
+from django.shortcuts import render
+
+def index(request):
+    context = {
+        'products': ['Товар 1', 'Товар 2', 'Товар 3'],
+    }
+    return render(request, 'shopapp/index.html', context)
+
